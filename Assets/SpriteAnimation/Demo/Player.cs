@@ -12,7 +12,7 @@ namespace SpriteAnimation
         private RectTransform _rect;
 
         [SerializeField]
-        private SpriteAnimationView _spriteAnim;
+        private SpriteImageAnimationView _spriteAnim;
 
         [SerializeField]
         private float _speed = 100f;

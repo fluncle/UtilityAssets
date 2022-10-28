@@ -1,21 +1,17 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// スプライトアニメーション
 /// </summary>
-[RequireComponent(typeof(Image))]
-public class SpriteAnimationView : MonoBehaviour
+public abstract class SpriteAnimationViewBase : MonoBehaviour
 {
     public enum SpriteMode
     {
         Single = 0,
         Multiple,
     }
-
-    private Image _image;
 
     private SpriteMode _spriteMode;
 
@@ -25,9 +21,7 @@ public class SpriteAnimationView : MonoBehaviour
 
     private int _loops = -1;
 
-    private bool _isSetNativeSize;
-
-    private Action<Image, Sprite> _onUpdate;
+    private Action<Sprite> _onUpdate;
 
     private Action _onComplete;
 
@@ -39,7 +33,11 @@ public class SpriteAnimationView : MonoBehaviour
 
     private void Awake()
     {
-        _image = GetComponent<Image>();
+        Initialize();
+    }
+
+    protected virtual void Initialize()
+    {
         _sprites = new List<Sprite>();
         Pause();
     }
@@ -49,7 +47,7 @@ public class SpriteAnimationView : MonoBehaviour
         _spriteMode = mode;
     }
 
-    public void Play(string spritePathFormat, int count, int startIndex = 0, float interval = 0.1f, int loops = -1, bool isSetNativeSize = false, Action<Image, Sprite> onUpdate = null, Action onComplete = null)
+    public void Play(string spritePathFormat, int count, int startIndex = 0, float interval = 0.1f, int loops = -1, Action<Sprite> onUpdate = null, Action onComplete = null)
     {
         _sprites.Clear();
 
@@ -75,7 +73,6 @@ public class SpriteAnimationView : MonoBehaviour
 
         _interval = interval;
         _loops = loops;
-        _isSetNativeSize = isSetNativeSize;
         _onUpdate = onUpdate;
         _onComplete = onComplete;
 
@@ -83,10 +80,12 @@ public class SpriteAnimationView : MonoBehaviour
         _currentSequence = 0;
         _countLoop = 0;
 
-        _image.sprite = _sprites[0];
+        SetSprite(_sprites[0]);
 
         enabled = true;
     }
+
+    protected abstract void SetSprite(Sprite sprite);
 
     public void Pause()
     {
@@ -96,18 +95,18 @@ public class SpriteAnimationView : MonoBehaviour
     private void Update()
     {
         _countTime += Time.deltaTime;
-        if(_countTime < _interval)
+        if (_countTime < _interval)
         {
             return;
         }
         _countTime = 0f;
 
         _currentSequence++;
-        if(_sprites.Count <= _currentSequence)
+        if (_sprites.Count <= _currentSequence)
         {
             _currentSequence = 0;
             _countLoop++;
-            if(_loops >= 0 && _loops <= _countLoop)
+            if (_loops >= 0 && _loops <= _countLoop)
             {
                 enabled = false;
                 _onComplete?.Invoke();
@@ -116,11 +115,7 @@ public class SpriteAnimationView : MonoBehaviour
         }
 
         var sprite = _sprites[_currentSequence];
-        _image.sprite = sprite;
-        if (_isSetNativeSize)
-        {
-            _image.SetNativeSize();
-        }
-        _onUpdate?.Invoke(_image, sprite);
+        SetSprite(sprite);
+        _onUpdate?.Invoke(sprite);
     }
 }
