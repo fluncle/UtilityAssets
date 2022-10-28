@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class SpriteAnimationSimple : MonoBehaviour
+/// <summary>
+/// SpriteAnimationViewで1パターンのアニメーションをシンプルに再生するコンポーネント
+/// </summary>
+public class SpriteAnimator : MonoBehaviour
 {
     [SerializeField]
     private string _spritePathFormat;
@@ -20,9 +23,6 @@ public class SpriteAnimationSimple : MonoBehaviour
     [SerializeField]
     private int _loops = -1;
 
-    [SerializeField]
-    private bool _log = false;
-
     private SpriteAnimationViewBase _spriteAnimationView;
 
     private void Start()
@@ -35,9 +35,6 @@ public class SpriteAnimationSimple : MonoBehaviour
     private void PlayAnimation()
     {
         _spriteAnimationView.SetSpriteMode(_spriteMode);
-        _spriteAnimationView.Play(_spritePathFormat, _count, _startIndex, _interval, _loops,
-            _log ? (sprite) => Debug.Log($"OnUpdate: {sprite.name}") : null,
-            _log ? () => Debug.Log("OnComplete") : null
-        );
+        _spriteAnimationView.Play(_spritePathFormat, _count, _startIndex, _interval, _loops);
     }
 }

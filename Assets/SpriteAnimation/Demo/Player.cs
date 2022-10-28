@@ -2,10 +2,15 @@ using UnityEngine;
 
 namespace SpriteAnimation
 {
+    /// <summary>
+    /// デモ用のプレイヤー
+    /// </summary>
     public class Player : MonoBehaviour
     {
+        /// <summary>待機アニメーションのスプライトパスの文字列フォーマット</summary>
         private const string IDLE_SPRITE_PATH_FORMAT = "Sprites/player/idle/player-idle-{0}";
 
+        /// <summary>走りアニメーションのスプライトパスの文字列フォーマット</summary>
         private const string RUN_SPRITE_PATH_FORMAT = "Sprites/player/run/player-run-{0}";
 
         [SerializeField]
@@ -21,6 +26,7 @@ namespace SpriteAnimation
 
         private void Start()
         {
+            // 待機アニメーションを再生
             _spriteAnim.Play(IDLE_SPRITE_PATH_FORMAT, 4, 1);
         }
 
@@ -31,11 +37,13 @@ namespace SpriteAnimation
 
             if(_isMove && vector == Vector2.zero)
             {
+                // 待機アニメーションを再生
                 _spriteAnim.Play(IDLE_SPRITE_PATH_FORMAT, 4, 1);
                 _isMove = false;
             }
             else if (!_isMove && vector != Vector2.zero)
             {
+                // 走りアニメーションを再生
                 _spriteAnim.Play(RUN_SPRITE_PATH_FORMAT, 6, 1, 0.075f);
                 _isMove = true;
 

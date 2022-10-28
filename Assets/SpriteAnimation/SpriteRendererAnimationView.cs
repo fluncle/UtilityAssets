@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// SpriteRenderer用のスプライトアニメーションを再生するコンポーネント
+/// </summary>
 [RequireComponent(typeof(SpriteRenderer))]
 public class SpriteRendererAnimationView : SpriteAnimationViewBase
 {
