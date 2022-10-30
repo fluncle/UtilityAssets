@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace GoogleSheetsReaderMaster
 {
+    /// <summary>
+    /// GoogleSheetsReaderMasterのサンプルシーン
+    /// </summary>
     public class SampleScene : MonoBehaviour
     {
         [SerializeField]
@@ -26,7 +29,9 @@ namespace GoogleSheetsReaderMaster
 
         private void OnLoadComplete()
         {
+            // 共通設定マスタデータウィンドウの初期化
             _commonSettingsWindow.Initialize();
+            // 敵マスタデータウィンドウの初期化
             _enemyParameterListWindow.Initialize();
             _loagingLayer.End();
         }

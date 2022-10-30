@@ -5,10 +5,20 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>
+/// スプレッドシートの読み込み関連のクラス
+/// </summary>
 public class GoogleSheetsReader
 {
     private const string URI_FORMAT = "https://docs.google.com/spreadsheets/d/{0}/gviz/tq?tqx=out:csv&sheet={1}";
 
+    /// <summary>
+    /// スプレッドシートの読み込み
+    /// </summary>
+    /// <param name="sheetId">シートID(スプレッドシートのURL内にあり)</param>
+    /// <param name="sheetName">シート内のタブ名</param>
+    /// <param name="onComplete">読み込み完了時のコールバック</param>
+    /// <param name="isPrint">読み込んだデータをログ出力するか否か</param>
     public static IEnumerator LoadSheet(string sheetId, string sheetName, Action<IList<IList<object>>> onComplete = null, bool isPrint = false)
     {
         UnityWebRequest request = UnityWebRequest.Get(string.Format(URI_FORMAT, sheetId, sheetName));

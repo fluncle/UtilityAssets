@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace GoogleSheetsReaderMaster
 {
+    /// <summary>
+    /// 敵マスタデータ詳細ウィンドウ
+    /// </summary>
     public class EnemyParameterWindow : MonoBehaviour
     {
         [SerializeField]
@@ -20,6 +23,7 @@ namespace GoogleSheetsReaderMaster
 
             ClearContent();
 
+            // 敵マスタデータ内の各種パラメータをウィンドウに並べて表示
             AddItem("HP", data.HP.ToString());
             AddItem("攻撃力", data.Attack.ToString());
         }

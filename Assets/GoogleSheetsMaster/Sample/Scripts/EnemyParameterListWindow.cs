@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace GoogleSheetsReaderMaster
 {
+    /// <summary>
+    /// 敵マスタデータリストウィンドウ
+    /// </summary>
     public class EnemyParameterListWindow : MonoBehaviour
     {
         [SerializeField]
@@ -23,11 +26,13 @@ namespace GoogleSheetsReaderMaster
             ClearContent();
 
             var items = new List<ItemEnemy>();
-            foreach(var kvp in MasterDataManager.Instance.EnemyMaster)
+            // 敵マスタのデータを順にウィンドウに並べて表示
+            foreach (var kvp in MasterDataManager.Instance.EnemyMaster)
             {
                 var id = kvp.Key;
                 var data = kvp.Value;
                 var item = AddItem(id, data.Name);
+                // 項目選択時に詳細ウィンドウで全てのパラメータを表示
                 item.SetOnClickEvent(isOn => _enemyParameterWindow.SetInfo(data), _toggleGroup);
                 items.Add(item);
             }

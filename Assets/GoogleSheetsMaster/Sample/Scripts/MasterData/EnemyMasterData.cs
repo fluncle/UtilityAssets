@@ -2,8 +2,16 @@ using System.Collections.Generic;
 
 namespace GoogleSheetsReaderMaster
 {
+    /// <summary>
+    /// 敵マスタデータ
+    /// 一般的なマスタデータとしてのサンプル
+    /// </summary>
     public class EnemyMasterData
     {
+        /// <summary>
+        /// データの種類
+        /// 列順で定義してください
+        /// </summary>
         private enum DataType
         {
             id = 0,

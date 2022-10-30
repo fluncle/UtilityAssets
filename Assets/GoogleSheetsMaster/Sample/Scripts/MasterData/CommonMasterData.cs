@@ -2,14 +2,23 @@ using System.Collections.Generic;
 
 namespace GoogleSheetsReaderMaster
 {
+    /// <summary>
+    /// 共通設定マスタデータ
+    /// 項目+値という単純なマスタデータとしてのサンプル
+    /// </summary>
     public class CommonMasterData
     {
+        /// <summary>
+        /// データの種類
+        /// 行順で定義してください
+        /// </summary>
         private enum DataType
         {
             comboMax = 1,
             comboCoefficientIncrement,
         }
 
+        /// <summary>値を定義する行</summary>
         private const int VALUE_COLUMN = 1;
 
         private int _comboMax;

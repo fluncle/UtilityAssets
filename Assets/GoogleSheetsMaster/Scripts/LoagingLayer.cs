@@ -1,6 +1,9 @@
 using UnityEngine;
 using DG.Tweening;
 
+/// <summary>
+/// 読み込み中の表示
+/// </summary>
 public class LoagingLayer : MonoBehaviour
 {
     [SerializeField]
@@ -14,6 +17,9 @@ public class LoagingLayer : MonoBehaviour
 
     private Sequence _rollSeq;
 
+    /// <summary>
+    /// 再生
+    /// </summary>
     public void Play()
     {
         _group.alpha = 1f;
@@ -33,6 +39,9 @@ public class LoagingLayer : MonoBehaviour
         rect.eulerAngles = eulerAngles;
     }
 
+    /// <summary>
+    /// 終了
+    /// </summary>
     public void End()
     {
         _textObj.SetActive(false);

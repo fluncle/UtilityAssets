@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace GoogleSheetsReaderMaster
 {
+    /// <summary>
+    /// 共通設定マスタデータウィンドウ
+    /// </summary>
     public class CommonSettingsWindow : MonoBehaviour
     {
         [SerializeField]
@@ -14,6 +17,7 @@ namespace GoogleSheetsReaderMaster
         {
             ClearContent();
 
+            // 共通設定マスタのデータを順にウィンドウに並べて表示
             var commonMaster = MasterDataManager.Instance.CommonMaster;
             AddItem("最大コンボ数", commonMaster.ComboMax.ToString());
             AddItem("コンボによるダメージ係数上昇値", commonMaster.ComboCoefficientIncrement.ToString());
