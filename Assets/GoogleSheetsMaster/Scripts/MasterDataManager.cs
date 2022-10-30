@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 public class MasterDataManager
 {
-    public static MasterDataManager Instance;
+    /// <summary>シングルトンインスタンス</summary>
+    private static MasterDataManager _instance = new MasterDataManager();
+    public static MasterDataManager Instance => _instance;
 
     /// <summary>
     /// 利用するスプレッドシートのID
@@ -18,10 +20,7 @@ public class MasterDataManager
     private const string ENEMY_SHEET_NAME = "敵";
     public Dictionary<int, GoogleSheetsReaderMaster.EnemyMasterData> EnemyMaster { get; private set; }
 
-    public MasterDataManager()
-    {
-        Instance = this;
-    }
+    private MasterDataManager() { }
 
     public IEnumerator LoadMaster(Action onComplete = null, bool isPrint = false)
     {

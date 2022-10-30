@@ -13,18 +13,15 @@ namespace GoogleSheetsReaderMaster
         [SerializeField]
         private EnemyParameterListWindow _enemyParameterListWindow;
 
-        private MasterDataManager _masterDataMgr;
-
         private void Awake()
         {
-            _masterDataMgr = new MasterDataManager();
             LoadMaster();
         }
 
         public void LoadMaster()
         {
             _loagingLayer.Play();
-            StartCoroutine(_masterDataMgr.LoadMaster(OnLoadComplete, true));
+            StartCoroutine(MasterDataManager.Instance.LoadMaster(OnLoadComplete, true));
         }
 
         private void OnLoadComplete()
