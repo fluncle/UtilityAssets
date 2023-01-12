@@ -1,4 +1,4 @@
-Unityパッケージのダウンロードはこちら: [VirtualStick.unitypackage](https://github.com/fluncle/UtilityAssets/raw/main/Assets/VirtualStick/VirtualStick.unitypackage)
+Unityパッケージのダウンロードはこちら: [SpriteAnimation.unitypackage](https://github.com/fluncle/UtilityAssets/raw/main/Assets/SpriteAnimation/SpriteAnimation.unitypackage)
 
 # デモ動画
 
